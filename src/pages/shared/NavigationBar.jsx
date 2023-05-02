@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const NavigationBar = () => {
+  const { user, logout } = useContext(AuthContext);
+  // logout
+  const handleLogout = () => {
+    logout()
+    .then(()=> {})
+    .catch(err => console.log(err?.message));
+  }
   return (
     <>
       <Navbar className="py-3" bg="dark" variant="dark" expand="lg">
@@ -16,16 +24,31 @@ const NavigationBar = () => {
               <Link className="nav-link" to={"/"}>
                 Home
               </Link>
-              <Nav.Link href="#action2">Blog</Nav.Link>
-              <Nav.Link href="#action2">About</Nav.Link>
-              <Nav.Link href="#action2">Contact</Nav.Link>
+              <Link className="nav-link" to={"/about"}>
+                About
+              </Link>
+              <Link className="nav-link" to={"/blog"}>
+                Blog
+              </Link>
+              <Link className="nav-link" to={"/contact"}>
+                Contact
+              </Link>
             </Nav>
             <div className="d-flex">
-              <Link to={"/login"}>
-                <Button variant="primary" className="px-4">
+              {user && (
+                <>
+                  <Button variant="warning" className="text-white">
+                    {user?.email}
+                  </Button>
+                </>
+              )}
+              {user ? (
+                <Link className="btn btn-danger ms-2" onClick={handleLogout}>Logout</Link>
+              ) : (
+                <Link className="btn btn-primary" to={"/login"}>
                   Login
-                </Button>
-              </Link>
+                </Link>
+              )}
             </div>
           </Navbar.Collapse>
         </Container>

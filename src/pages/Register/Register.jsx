@@ -1,35 +1,56 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+
+  // context
+  const { registerUser } = useContext(AuthContext);
 
   // create user
   const handleRegister = (e) => {
     e.preventDefault();
+    setPasswordError("");
     // form values
     const name = e.target.username.value;
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    // console.log(name, email, photo, password);
+    console.log(name, email, photo, password);
 
+    // validation checking
+    if (password.length < 6) {
+      setPasswordError("Password should be 6 characters long");
+      return;
+    }
     // user creation
-
+    registerUser(email, password)
+    .then(res => {
+      const validUser = res.user;
+      console.log(validUser);
+      // navigate to home
+      navigate("/");
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
     // reseting form value
     e.target.reset();
   };
   return (
     <>
-      <form className="container mb-5" onSubmit={handleRegister}>
+      <div className="container mb-5">
         <div className="row d-flex justify-content-center pt-5">
           <div className="col-md-5">
             <div className="card p-4">
               <div className="text-center">
                 <h3>Welcome to Signup</h3>
               </div>
-              <div className="card-body">
+              <form className="card-body" onSubmit={handleRegister}>
                 <span className="fs-5 d-block pb-1">Username</span>
                 <div className="input-group mb-3">
                   <input
@@ -78,14 +99,14 @@ const Register = () => {
                     required
                   />
                 </div>
-                <Form.Group
-                  className="pt-3"
-                  id="formGridCheckbox"
-                  onClick={() => setToggle(!toggle)}
-                >
+                <p className="text-danger">
+                  <small>{passwordError}</small>
+                </p>
+                <Form.Group className="pt-3" id="formGridCheckbox">
                   <Form.Check
                     type="checkbox"
                     label="Accept Terms and conditions"
+                    onClick={() => setToggle(!toggle)}
                   />
                 </Form.Group>
                 <div>
@@ -106,11 +127,11 @@ const Register = () => {
                     Login
                   </Link>
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };

@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+  const [loginError, setLoginError] = useState("");
   // sign in user
   const handleLogin = (e) => {
     // preventing refreshing
     e.preventDefault();
+    setLoginError("");
 
     // form values
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
 
+    // login user
+    loginUser(email, password)
+    .then(res => {
+      const loggedUser = res.user;
+      console.log(loggedUser);
+    })
+    .catch(err => {
+      console.log(err?.message);
+      if(err?.message){
+        setLoginError("Please insert correct email and password!");
+      }
+    })
+
     // reseting form value
     e.target.reset();
-  }
+  };
   return (
     <>
       <div className="container pt-4">
@@ -32,9 +49,10 @@ const Login = () => {
                     type="email"
                     name="email"
                     className="form-control"
-                    placeholder="Username"
-                    aria-label="Username"
+                    placeholder="Email"
+                    aria-label="email"
                     aria-describedby="basic-addon1"
+                    required
                   />
                 </div>
                 <span className="fs-5 d-block pb-1">Password</span>
@@ -46,10 +64,12 @@ const Login = () => {
                     placeholder="Password"
                     aria-label="password"
                     aria-describedby="basic-addon2"
+                    required
                   />
                 </div>
+                <p className="text-danger pt-2"><small>{loginError}</small></p>
                 <div>
-                  <button className="btn btn-dark mt-4 w-100 fw-bold fs-5">
+                  <button className="btn btn-dark mt-3 w-100 fw-bold fs-5">
                     Login
                   </button>
                 </div>
