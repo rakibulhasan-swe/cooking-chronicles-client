@@ -13,15 +13,19 @@ const NavigationBar = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="mx-auto my-2 my-lg-0" navbarScroll>
-              <Link className="nav-link" to={"/"}>Home</Link>
+              <Link className="nav-link" to={"/"}>
+                Home
+              </Link>
               <Nav.Link href="#action2">Blog</Nav.Link>
               <Nav.Link href="#action2">About</Nav.Link>
               <Nav.Link href="#action2">Contact</Nav.Link>
             </Nav>
             <div className="d-flex">
-              <Button variant="primary" className="px-4">
-                Login
-              </Button>
+              <Link to={"/login"}>
+                <Button variant="primary" className="px-4">
+                  Login
+                </Button>
+              </Link>
             </div>
           </Navbar.Collapse>
         </Container>
