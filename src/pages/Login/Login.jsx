@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Button } from "react-bootstrap";
+import { FaBeer, FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const { loginUser, googleLogin, githubLogin } = useContext(AuthContext);
@@ -27,12 +28,11 @@ const Login = () => {
   // handle github login
   const handleGithubLogin = () => {
     githubLogin(githubProvider)
-    .then(res => {
-      console.log(res.user);
-    })
-    .catch(err => console.log(err?.message));
-  }
-
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => console.log(err?.message));
+  };
 
   // sign in user
   const handleLogin = (e) => {
@@ -105,29 +105,35 @@ const Login = () => {
                 </div>
               </form>
               <p className="text-center">or</p>
-                <div className="pb-3">
-                  <Button
-                    variant="outline-dark"
-                    className="w-100"
-                    onClick={handleGoogleLogin}
-                  >
-                    SignIn with google
-                  </Button>
-                </div>
-                <div>
-                  <Button variant="outline-dark" className="w-100" onClick={handleGithubLogin}>
-                    SignIn with Github
-                  </Button>
-                </div>
-                <p className="text-center pt-4">
-                  Haven't an account?{" "}
-                  <Link
-                    className="text-decoration-none d-text fw-bold"
-                    to="/register"
-                  >
-                    Signup
-                  </Link>
-                </p>
+              <div className="pb-3">
+                <Button
+                  variant="outline-dark"
+                  className="w-100"
+                  onClick={handleGoogleLogin}
+                >
+                  <FaGoogle className="me-2" />
+                  SignIn with google
+                </Button>
+              </div>
+              <div>
+                <Button
+                  variant="outline-dark"
+                  className="w-100"
+                  onClick={handleGithubLogin}
+                >
+                  <FaGithub className="me-2" />
+                  SignIn with Github
+                </Button>
+              </div>
+              <p className="text-center pt-4">
+                Haven't an account?{" "}
+                <Link
+                  className="text-decoration-none d-text fw-bold"
+                  to="/register"
+                >
+                  Signup
+                </Link>
+              </p>
             </div>
           </div>
         </div>

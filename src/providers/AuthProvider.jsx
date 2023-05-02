@@ -5,30 +5,36 @@ import app from "../firebase/firebase.config";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
+    const [loader, setLoader] = useState(true);
     const [user, setUser] = useState(null);
 
   // register user
   const registerUser = (email, password) => {
+    setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
   // login user
   const loginUser = (email, password) => {
+    setLoader(true);
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   // google sign in
   const googleLogin = (provider) => {
+    setLoader(true);
     return signInWithPopup(auth, provider);
   }
 
   // github login
   const githubLogin = (provider) => {
+    setLoader(true);
     return signInWithPopup(auth, provider);
   }
 
   // logout
   const logout = () => {
+    setLoader(true);
     return signOut(auth);
   }
 
@@ -36,6 +42,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
+        setLoader(false);
     });
     return () => {
         unsubscribe();
@@ -44,6 +51,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    loader,
     registerUser,
     loginUser,
     googleLogin,
