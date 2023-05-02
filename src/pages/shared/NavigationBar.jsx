@@ -8,9 +8,9 @@ const NavigationBar = () => {
   // logout
   const handleLogout = () => {
     logout()
-    .then(()=> {})
-    .catch(err => console.log(err?.message));
-  }
+      .then(() => {})
+      .catch((err) => console.log(err?.message));
+  };
   return (
     <>
       <Navbar className="py-3" bg="dark" variant="dark" expand="lg">
@@ -36,14 +36,25 @@ const NavigationBar = () => {
             </Nav>
             <div className="d-flex">
               {user && (
-                <>
-                  <Button variant="warning" className="text-white">
-                    {user?.email}
-                  </Button>
-                </>
+                <Link>
+                  {user?.photoURL ? (
+                    <>
+                      <img
+                        className="rounded-circle"
+                        style={{ width: "2.4rem" }}
+                        src={user?.photoURL}
+                        alt="user image"
+                      />
+                    </>
+                  ) : (
+                    <Button variant="warning">{user?.email}</Button>
+                  )}
+                </Link>
               )}
               {user ? (
-                <Link className="btn btn-danger ms-2" onClick={handleLogout}>Logout</Link>
+                <Link className="btn btn-danger ms-3" onClick={handleLogout}>
+                  Logout
+                </Link>
               ) : (
                 <Link className="btn btn-primary" to={"/login"}>
                   Login

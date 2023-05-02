@@ -1,10 +1,39 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { Button } from "react-bootstrap";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleLogin, githubLogin } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
+
+  // google provider
+  const googleProvider = new GoogleAuthProvider();
+  // github provider
+  const githubProvider = new GithubAuthProvider();
+
+  // handle google sign in
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  // handle github login
+  const handleGithubLogin = () => {
+    githubLogin(githubProvider)
+    .then(res => {
+      console.log(res.user);
+    })
+    .catch(err => console.log(err?.message));
+  }
+
+
   // sign in user
   const handleLogin = (e) => {
     // preventing refreshing
@@ -18,16 +47,17 @@ const Login = () => {
 
     // login user
     loginUser(email, password)
-    .then(res => {
-      const loggedUser = res.user;
-      console.log(loggedUser);
-    })
-    .catch(err => {
-      console.log(err?.message);
-      if(err?.message){
-        setLoginError("Please insert correct email and password!");
-      }
-    })
+      .then((res) => {
+        const loggedUser = res.user;
+        // console.log(loggedUser);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err?.message);
+        if (err?.message) {
+          setLoginError("Please insert correct email and password!");
+        }
+      });
 
     // reseting form value
     e.target.reset();
@@ -52,7 +82,6 @@ const Login = () => {
                     placeholder="Email"
                     aria-label="email"
                     aria-describedby="basic-addon1"
-                    required
                   />
                 </div>
                 <span className="fs-5 d-block pb-1">Password</span>
@@ -64,25 +93,31 @@ const Login = () => {
                     placeholder="Password"
                     aria-label="password"
                     aria-describedby="basic-addon2"
-                    required
                   />
                 </div>
-                <p className="text-danger pt-2"><small>{loginError}</small></p>
+                <p className="text-danger pt-2">
+                  <small>{loginError}</small>
+                </p>
                 <div>
                   <button className="btn btn-dark mt-3 w-100 fw-bold fs-5">
                     Login
                   </button>
                 </div>
-                <p className="text-center pt-2">or</p>
+              </form>
+              <p className="text-center">or</p>
                 <div className="pb-3">
-                  <button className="btn btn-outline-dark w-100">
+                  <Button
+                    variant="outline-dark"
+                    className="w-100"
+                    onClick={handleGoogleLogin}
+                  >
                     SignIn with google
-                  </button>
+                  </Button>
                 </div>
                 <div>
-                  <button className="btn btn-outline-dark w-100">
+                  <Button variant="outline-dark" className="w-100" onClick={handleGithubLogin}>
                     SignIn with Github
-                  </button>
+                  </Button>
                 </div>
                 <p className="text-center pt-4">
                   Haven't an account?{" "}
@@ -93,7 +128,6 @@ const Login = () => {
                     Signup
                   </Link>
                 </p>
-              </form>
             </div>
           </div>
         </div>
