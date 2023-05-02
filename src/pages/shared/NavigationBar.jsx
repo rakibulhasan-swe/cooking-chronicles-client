@@ -35,7 +35,7 @@ const NavigationBar = () => {
                 Contact
               </Link>
             </Nav>
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
               {user && (
                 <Link>
                   {user?.photoURL ? (
@@ -48,7 +48,7 @@ const NavigationBar = () => {
                       />
                     </>
                   ) : (
-                    <Button variant="warning">{user?.email}</Button>
+                    <Button variant="warning">{user?.displayName}</Button>
                   )}
                 </Link>
               )}

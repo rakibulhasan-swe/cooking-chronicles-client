@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState("");
 
   // context
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, updateUser } = useContext(AuthContext);
 
   // create user
   const handleRegister = (e) => {
@@ -20,7 +21,7 @@ const Register = () => {
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(name, email, photo, password);
+    // console.log(name, email, photo, password);
 
     // validation checking
     if (password.length < 6) {
@@ -31,7 +32,15 @@ const Register = () => {
     registerUser(email, password)
     .then(res => {
       const validUser = res.user;
-      console.log(validUser);
+      // console.log(validUser);
+      
+      // update user
+      updateUser(name, photo)
+      .then(() => {})
+      .catch(err => console.log(err?.message));
+      
+      // alert toast
+      toast.success("Registration successfully");
       // navigate to home
       navigate("/");
     })
@@ -41,6 +50,7 @@ const Register = () => {
     // reseting form value
     e.target.reset();
   };
+
   return (
     <>
       <div className="container mb-5">
