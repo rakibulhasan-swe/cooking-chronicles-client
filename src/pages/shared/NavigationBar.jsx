@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+// import logo from '../../assets/logo.png';
 
 const NavigationBar = () => {
   const { user, logout } = useContext(AuthContext);
