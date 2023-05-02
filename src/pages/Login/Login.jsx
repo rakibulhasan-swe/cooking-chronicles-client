@@ -1,14 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Button } from "react-bootstrap";
 import { FaBeer, FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
+  const location = useLocation();
   const { loginUser, googleLogin, githubLogin } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
+
+  // from - redirect
+  const redirectLocation = location?.state?.from?.pathname || "/";
 
   // google provider
   const googleProvider = new GoogleAuthProvider();
@@ -21,6 +25,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(redirectLocation);
       })
       .catch((err) => console.log(err.message));
   };
@@ -30,6 +35,7 @@ const Login = () => {
     githubLogin(githubProvider)
       .then((res) => {
         console.log(res.user);
+        navigate(redirectLocation);
       })
       .catch((err) => console.log(err?.message));
   };
@@ -50,7 +56,7 @@ const Login = () => {
       .then((res) => {
         const loggedUser = res.user;
         // console.log(loggedUser);
-        navigate("/");
+        navigate(redirectLocation);
       })
       .catch((err) => {
         console.log(err?.message);

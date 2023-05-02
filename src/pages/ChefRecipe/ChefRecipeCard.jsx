@@ -8,6 +8,7 @@ const ChefRecipeCard = ({ recipe }) => {
   const [favourite, setFavourite] = useState(false);
   const { recipe_name, ingredients, cooking_method, rating } = recipe;
 
+  // handle favourite
   const handleFavourite = () => {
     setFavourite(true);
     toast.success("Added to favourite");
