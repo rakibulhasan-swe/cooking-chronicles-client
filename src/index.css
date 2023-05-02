@@ -1,0 +1,7 @@
+.banner{
+    height: 90vh;
+    background-image: url('./assets/banner.jpg');
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
