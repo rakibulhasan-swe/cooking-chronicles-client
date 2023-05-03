@@ -15,7 +15,7 @@ const ChefSection = () => {
   }, []);
   return (
     <>
-      <div className="container py-5">
+      <div className="container py-5 mt-5">
         <div className="text-center">
           <h2 className="fw-bold">Here is our Best Chef's</h2>
           <p className="py-2 fw-light">
