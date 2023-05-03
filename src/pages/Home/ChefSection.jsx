@@ -6,7 +6,9 @@ const ChefSection = () => {
 
   // data load from server
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch(
+      "https://cooking-chronicles-server-rakibhasan-programmer.vercel.app/chef"
+    )
       .then((res) => res.json())
       .then((data) => setChef(data))
       .catch((err) => console.log(err));

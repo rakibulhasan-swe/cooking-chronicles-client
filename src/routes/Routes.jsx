@@ -19,9 +19,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/chef/:id",
-        element: <PrivateRoute><ChefRecipe /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ChefRecipe />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/chef/${params.id}`),
+          fetch(
+            `https://cooking-chronicles-server-rakibhasan-programmer.vercel.app/chef/${params.id}`
+          ),
       },
       {
         path: "/login",

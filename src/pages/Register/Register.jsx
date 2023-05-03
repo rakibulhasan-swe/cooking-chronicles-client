@@ -32,8 +32,12 @@ const Register = () => {
     registerUser(email, password)
     .then(res => {
       const validUser = res.user;
-      // console.log(validUser);
       
+      // updated for ui
+      validUser.displayName = name;
+      validUser.photoURL = photo;
+      // console.log(validUser);
+
       // update user
       updateUser(name, photo)
       .then(() => {})
