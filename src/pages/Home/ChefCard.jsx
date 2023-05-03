@@ -33,7 +33,7 @@ const ChefCard = ({ chefData }) => {
                 <span className="d-block">{likes}</span>
               </p>
             </div>
-            <Link to={`/chef/${id}`}>
+            <Link to={`/recipe/${id}`}>
               <Button variant="primary">View Recipe</Button>
             </Link>
           </Card.Body>

@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Button } from "react-bootstrap";
 import { FaBeer, FaGithub, FaGoogle } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const location = useLocation();
@@ -24,7 +25,9 @@ const Login = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
+
+        // naviagte to the location
         navigate(redirectLocation);
       })
       .catch((err) => console.log(err.message));
@@ -56,6 +59,11 @@ const Login = () => {
       .then((res) => {
         const loggedUser = res.user;
         // console.log(loggedUser);
+
+        // toaster
+        toast.success("Login Successfull");
+        
+        // redirected to main location
         navigate(redirectLocation);
       })
       .catch((err) => {

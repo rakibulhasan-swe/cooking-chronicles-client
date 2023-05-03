@@ -6,6 +6,8 @@ import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ChefRecipe from "../pages/ChefRecipe/ChefRecipe";
 import PrivateRoute from "./PrivateRoute";
+import ChefBanner from "../pages/ChefRecipe/ChefBanner";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/chef/:id",
+        path: "/recipe/:id",
         element: (
           <PrivateRoute>
             <ChefRecipe />
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://cooking-chronicles-server-rakibhasan-programmer.vercel.app/chef/${params.id}`
+            `https://cooking-chronicles-server-rakibhasan-programmer.vercel.app/recipe/${params.id}`
           ),
       },
       {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/blog",
+        element: <Blog />
+      }
     ],
   },
 ]);
