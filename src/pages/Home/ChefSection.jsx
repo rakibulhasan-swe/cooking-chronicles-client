@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ChefCard from "./ChefCard";
+import { Spinner } from "react-bootstrap";
 
 const ChefSection = () => {
   const [chef, setChef] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   // data load from server
   useEffect(() => {
@@ -10,7 +12,10 @@ const ChefSection = () => {
       "https://cooking-chronicles-server-rakibhasan-programmer.vercel.app/chef"
     )
       .then((res) => res.json())
-      .then((data) => setChef(data))
+      .then((data) => {
+        setChef(data);
+        setLoader(false);
+      })
       .catch((err) => console.log(err));
   }, []);
   return (
@@ -24,11 +29,17 @@ const ChefSection = () => {
             areas for cleanliness and functionality.
           </p>
         </div>
-        <div className="row pt-3 g-4">
-          {chef.map((ch) => (
-            <ChefCard key={ch.id} chefData={ch} />
-          ))}
-        </div>
+        {loader ? (
+          <div className="text-center pt-4">
+            <Spinner variant="primary"></Spinner>
+          </div>
+        ) : (
+          <div className="row pt-3 g-4">
+            {chef.map((ch) => (
+              <ChefCard key={ch.id} chefData={ch} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
