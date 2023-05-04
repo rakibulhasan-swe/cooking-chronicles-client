@@ -28,7 +28,7 @@ const ChefCard = ({ chefData }) => {
           <Card.Body>
             <Card.Title className="fw-semibold">{chef_name}</Card.Title>
 
-            <div className="d-flex justify-content-between align-items-center py-2">
+            <div className="fw-light d-flex justify-content-between align-items-center py-2">
               <p>Experience: {years_of_experience}</p>
               <p>Total Recipe: {numbers_of_recipe}</p>
               <p className="d-flex">

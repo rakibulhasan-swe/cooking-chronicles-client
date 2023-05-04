@@ -33,7 +33,7 @@ const ChefRecipeCard = ({ recipe }) => {
               <span className="d-block fw-semibold fs-6 pb-1">
                 Cooking Method:
               </span>
-              {cooking_method.slice(0, 80)}...
+              {cooking_method.slice(0, 105)}...
             </Card.Text>
             <div className="pb-3 d-flex">
               <Rating readOnly style={{ maxWidth: "7rem" }} value={rating} />

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 
 const Footer = () => {
   return (
@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="container py-5">
           <div className="row g-4">
             <div className="col-md-6 col-lg-4">
-              <div>
-                <img src={logo} style={{width: "6rem"}} alt="" />
+              <div className="pb-3">
+                <img src={logo} className="img-fluid" style={{width: "15rem"}} alt="" />
               </div>
               <p>
                 We are a Bangladesh based food agency.
@@ -79,13 +79,13 @@ const Footer = () => {
               <div className="input-group my-3">
                 <input
                   type="text"
-                  className="form-control rounded-0 py-2"
+                  className="form-control py-2"
                   placeholder="Enter your email"
                   aria-label="Recipient's username"
                   aria-describedby="button-addon2"
                 />
                 <button
-                  className="btn btn-primary rounded-0 text-white"
+                  className="btn btn-primary text-white"
                   type="button"
                   id="button-addon2"
                 >

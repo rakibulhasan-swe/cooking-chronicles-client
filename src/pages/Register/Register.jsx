@@ -62,7 +62,7 @@ const Register = () => {
           <div className="col-md-5">
             <div className="card p-4">
               <div className="text-center">
-                <h3>Welcome to Signup</h3>
+                <h3 className="fw-semibold d-text">Welcome to Signup</h3>
               </div>
               <form className="card-body" onSubmit={handleRegister}>
                 <span className="fs-5 d-block pb-1">Username</span>
@@ -125,7 +125,7 @@ const Register = () => {
                 </Form.Group>
                 <div>
                   <button
-                    className={`btn btn-dark mt-3 w-100 fw-bold fs-5 ${
+                    className={`btn btn-primary mt-3 w-100 fw-bold fs-5 ${
                       toggle ? "disabled" : ""
                     }`}
                   >

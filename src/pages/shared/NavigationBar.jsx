@@ -23,14 +23,14 @@ const NavigationBar = () => {
         style={{ opacity: "0.94" }}
       >
         <Container>
-          <Navbar.Brand>
+          <NavLink to={"/"}>
             <img
               style={{ width: "8rem" }}
               src={logo}
               className="img-fluid"
               alt="Logo of this page"
             ></img>
-          </Navbar.Brand>
+          </NavLink>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="mx-auto my-2 my-lg-0" navbarScroll>

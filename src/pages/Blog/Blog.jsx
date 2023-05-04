@@ -5,8 +5,8 @@ const Blog = () => {
   const ref = React.createRef();
   return (
     <>
-      <div className="container pt-5">
-        <div className="row g-4" ref={ref}>
+      <div className="container pt-5" ref={ref}>
+        <div className="row g-4">
           <div className="col-md-6">
             <div>
               <h4>

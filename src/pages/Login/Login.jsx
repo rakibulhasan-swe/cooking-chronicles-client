@@ -67,7 +67,7 @@ const Login = () => {
         navigate(redirectLocation);
       })
       .catch((err) => {
-        console.log(err?.message);
+        // console.log(err?.message);
         if (err?.message) {
           setLoginError("Please insert correct email and password!");
         }
@@ -83,7 +83,7 @@ const Login = () => {
           <div className="col-md-5">
             <div className="card p-4">
               <div className="text-center">
-                <h3>Welcome to Login</h3>
+                <h3 className="fw-semibold d-text">Welcome to Login</h3>
                 <img src="" alt="" />
               </div>
               <form className="card-body" onSubmit={handleLogin}>
@@ -113,7 +113,7 @@ const Login = () => {
                   <small>{loginError}</small>
                 </p>
                 <div>
-                  <button className="btn btn-dark mt-3 w-100 fw-bold fs-5">
+                  <button className="btn btn-primary mt-3 w-100 fw-bold fs-5">
                     Login
                   </button>
                 </div>
@@ -121,8 +121,8 @@ const Login = () => {
               <p className="text-center">or</p>
               <div className="pb-3">
                 <Button
-                  variant="outline-dark"
-                  className="w-100"
+                  variant=""
+                  className="w-100 btn-outline-primary"
                   onClick={handleGoogleLogin}
                 >
                   <FaGoogle className="me-2" />
@@ -131,8 +131,8 @@ const Login = () => {
               </div>
               <div>
                 <Button
-                  variant="outline-dark"
-                  className="w-100"
+                  variant=""
+                  className="w-100 btn-outline-primary"
                   onClick={handleGithubLogin}
                 >
                   <FaGithub className="me-2" />

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 
 const Newsletter = () => {
   return (
@@ -11,7 +12,12 @@ const Newsletter = () => {
             Joins us. If you subcribe you will get all the latest updates from
             our ends.
           </p>
-          <Button variant="primary">Subscribe</Button>
+          <Button
+            variant="primary"
+            onClick={() => toast.success("Thanks for subscribing")}
+          >
+            Subscribe
+          </Button>
         </Container>
       </div>
     </>
