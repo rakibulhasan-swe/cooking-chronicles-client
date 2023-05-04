@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-// import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.svg";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const NavigationBar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -14,34 +15,72 @@ const NavigationBar = () => {
   };
   return (
     <>
-      <Navbar className="py-3" bg="dark" variant="dark" expand="lg">
+      <Navbar
+        className="py-3 sticky-top bg-blur"
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        style={{ opacity: "0.94" }}
+      >
         <Container>
-          <Navbar.Brand className="fw-bold fs-4">
-            Cooking Chronicles
+          <Navbar.Brand>
+            <img
+              style={{ width: "8rem" }}
+              src={logo}
+              className="img-fluid"
+              alt="Logo of this page"
+            ></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="mx-auto my-2 my-lg-0" navbarScroll>
-              <Link className="nav-link" to={"/"}>
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  isActive ? "active nav-link fw-bold px-3" : "nav-link px-3"
+                }
+              >
                 Home
-              </Link>
-              <Link className="nav-link" to={"/about"}>
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "active nav-link fw-bold px-3" : "nav-link px-3"
+                }
+                to={"/about"}
+              >
                 About
-              </Link>
-              <Link className="nav-link" to={"/blog"}>
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "active nav-link fw-bold px-3" : "nav-link px-3"
+                }
+                to={"/blog"}
+              >
                 Blog
-              </Link>
-              <Link className="nav-link" to={"/contact"}>
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "active nav-link fw-bold px-3" : "nav-link px-3"
+                }
+                to={"/contact"}
+              >
                 Contact
-              </Link>
+              </NavLink>
             </Nav>
             <div className="d-flex align-items-center">
+              {/* tooltip */}
+              <ReactTooltip
+                id="displayName"
+                place="bottom"
+                variant="info"
+                content={user?.displayName}
+              />
               {user && (
-                <Link>
+                <Link data-tooltip-id="displayName">
                   {user?.photoURL ? (
                     <>
                       <img
-                        className="rounded-circle"
+                        className="rounded-circle img-border"
                         style={{ width: "2.4rem" }}
                         src={user?.photoURL}
                         alt="user image"
@@ -57,7 +96,7 @@ const NavigationBar = () => {
                   Logout
                 </Link>
               ) : (
-                <Link className="btn btn-primary" to={"/login"}>
+                <Link className="btn btn-primary px-3" to={"/login"}>
                   Login
                 </Link>
               )}

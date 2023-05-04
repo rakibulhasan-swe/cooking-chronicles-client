@@ -1,16 +1,28 @@
-.banner{
-    height: 90vh;
-    background-image: url('./assets/banner.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+.banner {
+  height: 90vh;
+  background-image: url("./assets/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.subscribe{
-    height: 70vh;
-    object-fit: cover;
-    background-image: url('./assets/newslater.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+.subscribe {
+  height: 70vh;
+  object-fit: cover;
+  background-image: url("./assets/newslater.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-/* .btn-primary{
-    background-color: rgb(111, 17, 178) !important;
-} */
+.btn-primary {
+  background-color: #797ff7 !important;
+  border: 1px solid #797ff7 !important;
+}
+.active {
+  color: #797ff7 !important;
+}
+.bg-blur {
+  background: transparent;
+  backdrop-filter: blur(10px);
+}
+.img-border{
+    border: 2px solid #797ff7;
+}
+

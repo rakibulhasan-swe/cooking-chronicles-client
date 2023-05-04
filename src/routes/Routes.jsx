@@ -6,7 +6,6 @@ import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ChefRecipe from "../pages/ChefRecipe/ChefRecipe";
 import PrivateRoute from "./PrivateRoute";
-import ChefBanner from "../pages/ChefRecipe/ChefBanner";
 import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([

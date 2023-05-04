@@ -41,12 +41,12 @@ const Footer = () => {
               </p>
               <p>
                 <a className="text-decoration-none text-white" href="">
-                  UI/UX Design
+                  Hygenic
                 </a>
               </p>
             </div>
             <div className="col-md-6 col-lg-2">
-              <h5 className="pb-4">Company</h5>
+              <h5 className="pb-4">Important Links</h5>
               <p>
                 <a className="text-decoration-none text-white" href="#">
                   About us

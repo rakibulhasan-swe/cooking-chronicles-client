@@ -37,23 +37,18 @@ const ChefBanner = () => {
         </div>
       ) : (
         <Container>
-          <Row>
-            <Col>
-              <Card className="border-0">
-                <div>
-                  <Card.Img
-                    className="img-fluid"
-                    variant="top"
-                    style={{ height: "60vh", objectFit: "cover" }}
-                    src={chef_img}
-                  />
-                </div>
-                <Card.Body>
-                  <Card.Title className="fw-semibold">{chef_name}</Card.Title>
-                  <Card.Text className="fw-light py-3">{desc}</Card.Text>
-                  <div className="d-flex justify-content-between align-items-center ">
-                    <p>Experience: {years_of_experience}</p>
-                    <p>Total Recipe: {numbers_of_recipe}</p>
+          <div class="card my-3">
+            <div class="row g-0 d-flex align-items-center">
+              <div class="col-md-6">
+                <img src={chef_img} class="img-fluid rounded-start" alt="..." />
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h4 class="card-title fw-semibold">{chef_name}</h4>
+                  <p class="card-text py-3 fw-light lh-lg">{desc}</p>
+                  <div className="d-flex justify-content-between">
+                    <p>Experience: {years_of_experience} years</p>
+                    <p>Recipe: {numbers_of_recipe}</p>
                     <p className="d-flex">
                       <FaThumbsUp
                         className="me-1"
@@ -62,10 +57,10 @@ const ChefBanner = () => {
                       <span className="d-block">{likes}</span>
                     </p>
                   </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+                </div>
+              </div>
+            </div>
+          </div>
         </Container>
       )}
     </>
